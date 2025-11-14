@@ -83,9 +83,22 @@ h1 { color:#2c3e50; font-size:42px; margin-bottom:10px; text-shadow:2px 2px 4px 
 .code-btn:hover { transform: translateY(-3px); }
 .code-btn:active { transform: translateY(0); }
 
+/* Botão de código fonte*/
+.creditos-extra {
+  text-align: center;
+  margin: 60px auto 20px;
+  color: #8b949e;
+  font-size: 1rem;
+  opacity: 0.85;
+}
+.creditos-extra strong {
+  color: #58a6ff;
+}
+
 /* Helper hidden */
 .hidden{ display:none !important }
 
 /* Responsivo */
 @media (max-width:768px){ h1{font-size:32px} .choice{ width:100px; height:100px } .choice-icon{ font-size:40px } .battle-icon{ font-size:60px } }
+
 
