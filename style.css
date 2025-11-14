@@ -63,8 +63,29 @@ h1 { color:#2c3e50; font-size:42px; margin-bottom:10px; text-shadow:2px 2px 4px 
 .reset-btn{ width:100%; padding:18px; background: linear-gradient(135deg,#667eea 0%, #764ba2 100%); color:white; border:none; border-radius:15px; font-size:18px; font-weight:bold; cursor:pointer; transition:all .3s ease }
 .reset-btn:hover{ transform:translateY(-3px) } .reset-btn:active{ transform:translateY(0) }
 
+/* Botão de Código fonte*/
+.code-btn {
+    padding: 15px 25px;
+    background: linear-gradient(135deg,#667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .3s ease;
+    display: block;
+    margin: 25px auto 0;
+    text-align: center;
+    text-decoration: none;
+    width: fit-content;
+}
+.code-btn:hover { transform: translateY(-3px); }
+.code-btn:active { transform: translateY(0); }
+
 /* Helper hidden */
 .hidden{ display:none !important }
 
 /* Responsivo */
 @media (max-width:768px){ h1{font-size:32px} .choice{ width:100px; height:100px } .choice-icon{ font-size:40px } .battle-icon{ font-size:60px } }
+
