@@ -1,0 +1,93 @@
+/* === ESTILIZAÇÃO GERAL === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #a8c0ff 50%, #c9d6ff 100%);
+    min-height: 100vh; display: flex; justify-content: center; align-items: center;
+    padding: 20px; overflow-x: hidden;
+}
+.container {
+    background: rgba(255,255,255,0.95); border-radius: 30px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.3); padding: 40px; max-width: 900px; width:100%;
+    animation: slideDown 1s ease-out;
+}
+@keyframes slideDown { from { opacity:0; transform:translateY(-100px) scale(.9); } to { opacity:1; transform:translateY(0) scale(1);} }
+header { text-align:center; margin-bottom:30px; animation: fadeIn 1.5s ease-out; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+h1 { color:#2c3e50; font-size:42px; margin-bottom:10px; text-shadow:2px 2px 4px rgba(0,0,0,0.1); }
+.subtitle { color:#7f8c8d; font-size:18px; }
+
+/* Placares */
+.scoreboard{ display:flex; justify-content:space-around; margin-bottom:30px; padding:20px;
+    background: linear-gradient(135deg,#f5f7fa 0%, #c3cfe2 100%); border-radius:15px;
+}
+.score-item{text-align:center}
+.score-label{ font-size:14px; color:#7f8c8d; margin-bottom:5px; text-transform:uppercase }
+.score-value{ font-size:36px; font-weight:bold; color:#2c3e50; }
+
+/* Escolhas */
+.choices{ display:flex; justify-content:center; gap:30px; margin:40px 0; flex-wrap:wrap; }
+.choice{
+    background:white; width:140px; height:140px; border-radius:20px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; cursor:pointer; transition:all .3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); border:3px solid transparent; animation:popIn .8s ease-out backwards;
+    user-select:none;
+}
+.choice:nth-child(1){ animation-delay:.2s } .choice:nth-child(2){ animation-delay:.4s } .choice:nth-child(3){ animation-delay:.6s }
+@keyframes popIn { from{opacity:0; transform:scale(0)} to{opacity:1; transform:scale(1)} }
+.choice:hover{ transform:translateY(-10px) scale(1.05); box-shadow:0 15px 30px rgba(102,126,234,0.4); border-color:#667eea; }
+.choice:active{ transform:translateY(-5px) scale(.98) }
+.choice-icon{ font-size:60px; margin-bottom:10px } .choice-name{ font-size:16px; font-weight:600; color:#2c3e50 }
+
+/* Desabilitado (quando áudio toca) */
+.choices.disabled .choice{ pointer-events:none; opacity:.45; transform:none; box-shadow:none; filter:grayscale(.1); }
+.choice[aria-disabled="true"]{ pointer-events:none; opacity:.45; }
+
+/* Batalha */
+.battle-area{ display:flex; justify-content:space-around; align-items:center; padding:30px;
+    background: linear-gradient(135deg,#f093fb 0%, #f5576c 100%); border-radius:20px; margin:30px 0;
+    min-height:200px; position:relative; overflow:hidden;
+}
+.battle-area::before{ content:''; position:absolute; width:200%; height:200%; background:linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%); animation:shine 3s infinite; }
+@keyframes shine{ 0%{transform:translateX(-100%) translateY(-100%) rotate(45deg);} 100%{transform:translateX(100%) translateY(100%) rotate(45deg);} }
+.battle-side{ text-align:center; z-index:1 } .battle-label{ font-size:18px; color:white; margin-bottom:15px; font-weight:bold; text-shadow:2px 2px 4px rgba(0,0,0,0.3); }
+.battle-icon{ font-size:80px; animation:bounce .6s ease-out; } @keyframes bounce{ 0%,100%{transform:scale(1);} 50%{transform:scale(1.2);} }
+.vs{ font-size:48px; font-weight:bold; color:white; text-shadow:3px 3px 6px rgba(0,0,0,0.4); z-index:1; animation:pulse 1s infinite; }
+@keyframes pulse{ 0%,100%{transform:scale(1); opacity:1} 50%{transform:scale(1.1); opacity:.8} }
+
+/* Resultado */
+.result{ text-align:center; padding:25px; background:white; border-radius:15px; margin:20px 0; box-shadow:0 5px 15px rgba(0,0,0,0.1) }
+.result-text{ font-size:28px; font-weight:bold; color:#2c3e50 } .result-message{ font-size:16px; color:#7f8c8d }
+
+/* Botão */
+.reset-btn{ width:100%; padding:18px; background: linear-gradient(135deg,#667eea 0%, #764ba2 100%); color:white; border:none; border-radius:15px; font-size:18px; font-weight:bold; cursor:pointer; transition:all .3s ease }
+.reset-btn:hover{ transform:translateY(-3px) } .reset-btn:active{ transform:translateY(0) }
+
+/* Helper hidden */
+.hidden{ display:none !important }
+
+/* Responsivo */
+@media (max-width:768px){ h1{font-size:32px} .choice{ width:100px; height:100px } .choice-icon{ font-size:40px } .battle-icon{ font-size:60px } }
+
+/* Botão flutuante Código-Fonte */
+.code-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    transition: all .3s ease;
+    z-index: 9999;
+}
+.code-btn:hover {
+    transform: translateY(-4px);
+}
+.code-btn:active {
+    transform: translateY(0);
+}

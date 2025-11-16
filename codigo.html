@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Código-Fonte | Jokenpô Game</title>
+
+  <link rel="icon" type="image/svg+xml"
+href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='15' fill='%23f1c40f'/%3E%3Ctext x='50' y='68' font-family='Segoe Script,cursive' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3ECDF%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d1117;
+      color: #e6edf3;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    h1, h2 {
+      color: #58a6ff;
+      text-align: center;
+    }
+
+    /* SEÇÕES DO CÓDIGO */
+    .code-section {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: #161b22;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #0005;
+    }
+
+    pre {
+      background: #0d1117;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    /* Botão voltar */
+    .voltar-btn {
+      display: inline-block;
+      margin-top: 25px;
+      margin-left: 10px;
+      background: linear-gradient(135deg,#667eea 0%, #764ba2 100%);
+      padding: 12px 22px;
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: .3s;
+    }
+    .voltar-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Créditos */
+    .creditos {
+      text-align: center;
+      color: #8b949e;
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+
+    /* ANIMAÇÃO ORIGINAL PRESERVADA */
+    .animate-code-entry {
+      opacity: 0;
+      transform: translateY(-40px);
+      animation: slideDownCode 0.8s ease-out forwards;
+    }
+
+    @keyframes slideDownCode {
+      from {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🪨📄✂️ Código-Fonte do Projeto</h1>
+  <p style="text-align:center">Veja abaixo os arquivos utilizados no desenvolvimento.</p>
+
+  <!-- HTML -->
+  <section class="code-section animate-code-entry">
+    <h2>📄 HTML</h2>
+    <pre><code class="language-html">
+<!-- index.html -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;
+    &lt;title&gt;Jokenpô - Pedra, Papel e Tesoura&lt;/title&gt;
+    &lt;link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000' rx='10'/%3E%3Ctext x='50' y='70' font-family='Segoe Script,cursive' font-size='32' font-weight='bold' text-anchor='middle' fill='white'%3EJKP%3C/text%3E%3C/svg%3E"&gt;
+    &lt;link rel="stylesheet" href="style.css" /&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;div class="container"&gt;
+        &lt;header&gt;
+            &lt;h1&gt;🎮 Jokenpô&lt;/h1&gt;
+            &lt;p class="subtitle"&gt;Pedra, Papel e Tesoura - Desafie o Computador!&lt;/p&gt;
+        &lt;/header&gt;
+
+        &lt;!-- Placares --&gt;
+        &lt;div class="scoreboard"&gt;
+            &lt;div class="score-item"&gt;
+                &lt;div class="score-label"&gt;Você&lt;/div&gt;
+                &lt;div class="score-value" id="playerScore"&gt;0&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="score-item"&gt;
+                &lt;div class="score-label"&gt;Empates&lt;/div&gt;
+                &lt;div class="score-value" id="drawScore"&gt;0&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="score-item"&gt;
+                &lt;div class="score-label"&gt;Computador&lt;/div&gt;
+                &lt;div class="score-value" id="computerScore"&gt;0&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Escolhas --&gt;
+        &lt;div class="choices" id="choicesContainer"&gt;
+            &lt;div class="choice" data-choice="pedra" role="button" tabindex="0" aria-pressed="false"&gt;
+                &lt;div class="choice-icon"&gt;✊&lt;/div&gt;
+                &lt;div class="choice-name"&gt;Pedra&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="choice" data-choice="papel" role="button" tabindex="0" aria-pressed="false"&gt;
+                &lt;div class="choice-icon"&gt;📄&lt;/div&gt;
+                &lt;div class="choice-name"&gt;Papel&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="choice" data-choice="tesoura" role="button" tabindex="0" aria-pressed="false"&gt;
+                &lt;div class="choice-icon"&gt;✂️&lt;/div&gt;
+                &lt;div class="choice-name"&gt;Tesoura&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Área da batalha --&gt;
+        &lt;div class="battle-area hidden" id="battleArea"&gt;
+            &lt;div class="battle-side"&gt;
+                &lt;div class="battle-label"&gt;Você&lt;/div&gt;
+                &lt;div class="battle-icon" id="playerChoice"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class="vs"&gt;VS&lt;/div&gt;
+
+            &lt;div class="battle-side"&gt;
+                &lt;div class="battle-label"&gt;Computador&lt;/div&gt;
+                &lt;div class="battle-icon" id="computerChoice"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Resultado --&gt;
+        &lt;div class="result"&gt;
+            &lt;div class="result-text" id="resultText"&gt;Escolha sua jogada!&lt;/div&gt;
+            &lt;div class="result-message" id="resultMessage"&gt;Pedra ganha de Tesoura • Papel ganha de Pedra • Tesoura ganha de Papel&lt;/div&gt;
+            &lt;div id="streakMessage"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;button class="reset-btn" id="resetBtn"&gt;🔄 Reiniciar Jogo&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Botão flutuante Código-Fonte --&gt;
+    &lt;a href="codigo.html" class="code-btn"&gt;💻 Código-fonte&lt;/a&gt;
+
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+    </code></pre>
+  </section>
+
+  <!-- CSS -->
+  <section class="code-section animate-code-entry" style="animation-delay: .15s;">
+    <h2>🎨 CSS</h2>
+    <pre><code class="language-css">
+/* === ESTILIZAÇÃO GERAL === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #a8c0ff 50%, #c9d6ff 100%);
+    min-height: 100vh; display: flex; justify-content: center; align-items: center;
+    padding: 20px; overflow-x: hidden;
+}
+.container {
+    background: rgba(255,255,255,0.95); border-radius: 30px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.3); padding: 40px; max-width: 900px; width:100%;
+    animation: slideDown 1s ease-out;
+}
+@keyframes slideDown { from { opacity:0; transform:translateY(-100px) scale(.9); } to { opacity:1; transform:translateY(0) scale(1);} }
+header { text-align:center; margin-bottom:30px; animation: fadeIn 1.5s ease-out; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+h1 { color:#2c3e50; font-size:42px; margin-bottom:10px; text-shadow:2px 2px 4px rgba(0,0,0,0.1); }
+.subtitle { color:#7f8c8d; font-size:18px; }
+
+/* Placares */
+.scoreboard{ display:flex; justify-content:space-around; margin-bottom:30px; padding:20px;
+    background: linear-gradient(135deg,#f5f7fa 0%, #c3cfe2 100%); border-radius:15px;
+}
+.score-item{text-align:center}
+.score-label{ font-size:14px; color:#7f8c8d; margin-bottom:5px; text-transform:uppercase }
+.score-value{ font-size:36px; font-weight:bold; color:#2c3e50; }
+
+/* Escolhas */
+.choices{ display:flex; justify-content:center; gap:30px; margin:40px 0; flex-wrap:wrap; }
+.choice{
+    background:white; width:140px; height:140px; border-radius:20px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; cursor:pointer; transition:all .3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); border:3px solid transparent; animation:popIn .8s ease-out backwards;
+    user-select:none;
+}
+.choice:nth-child(1){ animation-delay:.2s } .choice:nth-child(2){ animation-delay:.4s } .choice:nth-child(3){ animation-delay:.6s }
+@keyframes popIn { from{opacity:0; transform:scale(0)} to{opacity:1; transform:scale(1)} }
+.choice:hover{ transform:translateY(-10px) scale(1.05); box-shadow:0 15px 30px rgba(102,126,234,0.4); border-color:#667eea; }
+.choice:active{ transform:translateY(-5px) scale(.98) }
+.choice-icon{ font-size:60px; margin-bottom:10px } .choice-name{ font-size:16px; font-weight:600; color:#2c3e50 }
+
+/* Desabilitado (quando áudio toca) */
+.choices.disabled .choice{ pointer-events:none; opacity:.45; transform:none; box-shadow:none; filter:grayscale(.1); }
+.choice[aria-disabled="true"]{ pointer-events:none; opacity:.45; }
+
+/* Batalha */
+.battle-area{ display:flex; justify-content:space-around; align-items:center; padding:30px;
+    background: linear-gradient(135deg,#f093fb 0%, #f5576c 100%); border-radius:20px; margin:30px 0;
+    min-height:200px; position:relative; overflow:hidden;
+}
+.battle-area::before{ content:''; position:absolute; width:200%; height:200%; background:linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%); animation:shine 3s infinite; }
+@keyframes shine{ 0%{transform:translateX(-100%) translateY(-100%) rotate(45deg);} 100%{transform:translateX(100%) translateY(100%) rotate(45deg);} }
+.battle-side{ text-align:center; z-index:1 } .battle-label{ font-size:18px; color:white; margin-bottom:15px; font-weight:bold; text-shadow:2px 2px 4px rgba(0,0,0,0.3); }
+.battle-icon{ font-size:80px; animation:bounce .6s ease-out; } @keyframes bounce{ 0%,100%{transform:scale(1);} 50%{transform:scale(1.2);} }
+.vs{ font-size:48px; font-weight:bold; color:white; text-shadow:3px 3px 6px rgba(0,0,0,0.4); z-index:1; animation:pulse 1s infinite; }
+@keyframes pulse{ 0%,100%{transform:scale(1); opacity:1} 50%{transform:scale(1.1); opacity:.8} }
+
+/* Resultado */
+.result{ text-align:center; padding:25px; background:white; border-radius:15px; margin:20px 0; box-shadow:0 5px 15px rgba(0,0,0,0.1) }
+.result-text{ font-size:28px; font-weight:bold; color:#2c3e50 } .result-message{ font-size:16px; color:#7f8c8d }
+
+/* Botão */
+.reset-btn{ width:100%; padding:18px; background: linear-gradient(135deg,#667eea 0%, #764ba2 100%); color:white; border:none; border-radius:15px; font-size:18px; font-weight:bold; cursor:pointer; transition:all .3s ease }
+.reset-btn:hover{ transform:translateY(-3px) } .reset-btn:active{ transform:translateY(0) }
+
+/* Helper hidden */
+.hidden{ display:none !important }
+
+/* Responsivo */
+@media (max-width:768px){ h1{font-size:32px} .choice{ width:100px; height:100px } .choice-icon{ font-size:40px } .battle-icon{ font-size:60px } }
+
+/* Botão flutuante Código-Fonte */
+.code-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    transition: all .3s ease;
+    z-index: 9999;
+}
+.code-btn:hover {
+    transform: translateY(-4px);
+}
+.code-btn:active {
+    transform: translateY(0);
+}
+
+    </code></pre>
+  </section>
+
+  <!-- JavaScript -->
+  <section class="code-section animate-code-entry" style="animation-delay: .3s;">
+    <h2>🧠 JavaScript</h2>
+    <pre><code class="language-javascript">
+// script.js
+// ==========================
+// JOKENPÔ - script.js
+// Integra áudio (win/lose/draw) e bloqueia escolhas enquanto o áudio toca.
+// ==========================
+
+// --------------------------
+// Variáveis de estado do jogo
+// --------------------------
+let playerScore = 0, computerScore = 0, drawScore = 0;
+let playerStreak = 0, computerStreak = 0;
+const choices = { pedra: '✊', papel: '📄', tesoura: '✂️' };
+
+// --------------------------
+// Nomes padronizados para organização.
+// --------------------------
+const soundPaths = {
+    win: 'audio-win.mp3',
+    lose: 'audio-lose.mp3',
+    draw: 'audio-draw.mp3'
+};
+
+// Cria objetos Audio
+const audioWin = new Audio(soundPaths.win);
+const audioLose = new Audio(soundPaths.lose);
+const audioDraw = new Audio(soundPaths.draw);
+
+// Tempo máximo de áudio (fallback) em ms — seus áudios têm até 3000ms
+const AUDIO_FALLBACK_MS = 3500;
+
+// Estado de bloqueio: impede jogadas enquanto true
+let locked = false;
+
+// --------------------------
+// Inicialização: adiciona listeners aos elementos .choice e ao botão reset
+// --------------------------
+document.addEventListener('DOMContentLoaded', () => {
+    // Delegação de eventos para escolhas
+    const choicesContainer = document.getElementById('choicesContainer') || document.querySelector('.choices');
+    // Se não houver container (por qualquer motivo), pega elementos individuais
+    if (choicesContainer) {
+        choicesContainer.addEventListener('click', (e) => {
+            if (locked) return; // não permitir jogada enquanto bloqueado
+            const choiceEl = e.target.closest('.choice');
+            if (!choiceEl) return;
+            const playerChoice = choiceEl.dataset.choice;
+            if (playerChoice) play(playerChoice);
+        });
+
+        // Permitir interação por teclado (Enter/Space)
+        choicesContainer.addEventListener('keydown', (e) => {
+            if (locked) return;
+            if (e.key === 'Enter' || e.key === ' ') {
+                const choiceEl = e.target.closest('.choice');
+                if (!choiceEl) return;
+                const playerChoice = choiceEl.dataset.choice;
+                if (playerChoice) play(playerChoice);
+            }
+        });
+    }
+
+    // Reset button
+    const resetBtn = document.getElementById('resetBtn');
+    if (resetBtn) resetBtn.addEventListener('click', resetGame);
+
+    console.log('🎮 Jokenpô carregado com áudio. Boa sorte!');
+});
+
+// ===========================
+// Função principal: executar uma jogada
+// ===========================
+function play(playerChoice) {
+    if (locked) return; // bloqueio extra (proteção)
+    lockChoices(true);    // bloqueia imediatamente para evitar cliques rápidos duplicados
+
+    const computerChoice = getComputerChoice();
+
+    // Mostra a área de batalha
+    document.getElementById('battleArea').classList.remove('hidden');
+    document.getElementById('playerChoice').textContent = choices[playerChoice];
+    document.getElementById('computerChoice').textContent = choices[computerChoice];
+
+    // Determina resultado e atualiza placar
+    const result = determineWinner(playerChoice, computerChoice);
+    updateScore(result);
+    displayResult(result, playerChoice, computerChoice);
+
+    // Toca o som correspondente e mantém o bloqueio enquanto o som acontece
+    playResultAudio(result);
+}
+
+// ===========================
+// Escolha aleatória do computador
+// ===========================
+function getComputerChoice() {
+    const options = ['pedra', 'papel', 'tesoura'];
+    return options[Math.floor(Math.random() * 3)];
+}
+
+// ===========================
+// Determina vencedor
+// ===========================
+function determineWinner(player, computer) {
+    if (player === computer) return 'draw';
+    if (
+        (player === 'pedra' && computer === 'tesoura') ||
+        (player === 'papel' && computer === 'pedra') ||
+        (player === 'tesoura' && computer === 'papel')
+    ) return 'win';
+    return 'lose';
+}
+
+// ===========================
+// Atualiza o placar visual e streaks
+// ===========================
+function updateScore(result) {
+    if (result === 'win') {
+        playerScore++; playerStreak++; computerStreak = 0;
+        document.getElementById('playerScore').textContent = playerScore;
+    } else if (result === 'lose') {
+        computerScore++; computerStreak++; playerStreak = 0;
+        document.getElementById('computerScore').textContent = computerScore;
+    } else {
+        drawScore++; playerStreak = 0; computerStreak = 0;
+        document.getElementById('drawScore').textContent = drawScore;
+    }
+}
+
+// ===========================
+// Mostra resultado textual e mensagens de streak
+// ===========================
+function displayResult(result, playerChoice, computerChoice) {
+    const resultText = document.getElementById('resultText');
+    const resultMessage = document.getElementById('resultMessage');
+    const streakMessage = document.getElementById('streakMessage');
+
+    if (result === 'win') {
+        resultText.textContent = '🎉 Você Venceu!';
+        resultText.style.color = '#27ae60';
+        resultMessage.textContent = `Sua ${getChoiceName(playerChoice)} venceu a ${getChoiceName(computerChoice)}!`;
+    } else if (result === 'lose') {
+        resultText.textContent = '😢 Você Perdeu!';
+        resultText.style.color = '#e74c3c';
+        resultMessage.textContent = `${getChoiceName(computerChoice)} venceu sua ${getChoiceName(playerChoice)}!`;
+    } else {
+        resultText.textContent = '🤝 Empate!';
+        resultText.style.color = '#f39c12';
+        resultMessage.textContent = `Ambos escolheram ${getChoiceName(playerChoice)}!`;
+    }
+
+    streakMessage.innerHTML = '';
+    if (playerStreak >= 2) {
+        const msg = pickRandom(winMessages);
+        streakMessage.innerHTML = `<div class="streak-message streak-win">✨ ${msg} (${playerStreak} vitórias seguidas!)</div>`;
+    } else if (computerStreak >= 2) {
+        const msg = pickRandom(loseMessages);
+        streakMessage.innerHTML = `<div class="streak-message streak-lose">🎯 ${msg} (${computerStreak} derrotas seguidas)</div>`;
+    }
+}
+
+// ===========================
+// Toca o áudio correspondente ao resultado
+// ===========================
+function playResultAudio(result) {
+    // Escolhe o objeto Audio
+    let audio;
+    if (result === 'win') audio = audioWin;
+    else if (result === 'lose') audio = audioLose;
+    else audio = audioDraw;
+
+    // Se outro áudio estiver tocando, para e substitui (evita sobreposição)
+    [audioWin, audioLose, audioDraw].forEach(a => {
+        try { if (a !== audio && !a.paused) { a.pause(); a.currentTime = 0; } } catch(e) {}
+    });
+
+    // Bloqueia escolhas (classe .disabled aplica estilos e pointer-events:none)
+    lockChoices(true);
+
+    // Play e handlers
+    let ended = false;
+    // Handler que reativa ao terminar
+    const onEnded = () => {
+        ended = true;
+        cleanupAudioHandlers();
+        lockChoices(false);
+    };
+
+    // Cleanup (remove listeners e garante desbloqueio após fallback)
+    const cleanupAudioHandlers = () => {
+        try { audio.removeEventListener('ended', onEnded); } catch(e){}
+        if (fallbackTimer) { clearTimeout(fallbackTimer); fallbackTimer = null; }
+    };
+
+    // Fallback: caso 'ended' não ocorra (por política do navegador ou erro), usar timeout
+    let fallbackTimer = setTimeout(() => {
+        if (!ended) {
+            try { audio.pause(); audio.currentTime = 0; } catch(e){}
+            cleanupAudioHandlers();
+            lockChoices(false);
+        }
+    }, AUDIO_FALLBACK_MS);
+
+    // Adiciona listener e dispara
+    try {
+        audio.addEventListener('ended', onEnded);
+        // Tentar carregar e tocar
+        audio.currentTime = 0;
+        const playPromise = audio.play();
+        // play() retorna Promise em alguns browsers - tratamos rejeição para não travar
+        if (playPromise !== undefined) {
+            playPromise.catch(err => {
+                // Se não for possível tocar (autoplay policy?), ainda devemos desbloquear após fallback
+                console.warn('Não foi possível reproduzir o áudio automaticamente:', err);
+            });
+        }
+    } catch (e) {
+        console.warn('Erro ao tentar reproduzir áudio:', e);
+        // Em caso de erro imediato, desbloqueia via fallback (o timer já vai reativar)
+    }
+}
+
+// ===========================
+// Bloqueia ou desbloqueia as escolhas do jogador
+// - adiciona/remova classe 'disabled' ao container .choices
+// - marca aria-disabled nos elementos para acessibilidade
+// ===========================
+function lockChoices(shouldLock) {
+    locked = shouldLock;
+    const choicesContainer = document.getElementById('choicesContainer') || document.querySelector('.choices');
+    if (!choicesContainer) return;
+    if (shouldLock) {
+        choicesContainer.classList.add('disabled');
+        // marca cada botão
+        choicesContainer.querySelectorAll('.choice').forEach(ch => {
+            ch.setAttribute('aria-disabled', 'true');
+            ch.setAttribute('tabindex', '-1');
+        });
+    } else {
+        choicesContainer.classList.remove('disabled');
+        choicesContainer.querySelectorAll('.choice').forEach(ch => {
+            ch.setAttribute('aria-disabled', 'false');
+            ch.setAttribute('tabindex', '0');
+        });
+    }
+}
+
+// ===========================
+// Utilitários
+// ===========================
+function getChoiceName(choice) {
+    return { pedra: 'Pedra', papel: 'Papel', tesoura: 'Tesoura' }[choice] || choice;
+}
+function pickRandom(arr) { return arr[Math.floor(Math.random()*arr.length)]; }
+
+// Mensagens (reaproveitadas)
+const winMessages = [
+    'Você está em chamas! 🔥', 'Imparável! Continue assim! 💪', 'Você é uma máquina de vencer! 🏆',
+    'Está dominando o jogo! 🎯', 'Impressionante! Série de vitórias! ⭐'
+];
+const loseMessages = [
+    'Eita... tá difícil hein? 😅', 'Computador tá mandando bem! 🤖', 'Hora de revidar! Não desista! 💪',
+    'Opa, tomou uma sequência! 😬', 'Calma, ainda dá pra virar! 🎮'
+];
+
+// ===========================
+// Função de reset do jogo
+// ===========================
+function resetGame() {
+    playerScore = computerScore = drawScore = playerStreak = computerStreak = 0;
+    document.getElementById('playerScore').textContent = '0';
+    document.getElementById('computerScore').textContent = '0';
+    document.getElementById('drawScore').textContent = '0';
+    document.getElementById('resultText').textContent = 'Escolha sua jogada!';
+    document.getElementById('resultText').style.color = '#2c3e50';
+    document.getElementById('resultMessage').textContent = 'Pedra ganha de Tesoura • Papel ganha de Pedra • Tesoura ganha de Papel';
+    document.getElementById('streakMessage').innerHTML = '';
+    document.getElementById('battleArea').classList.add('hidden');
+
+    // Para qualquer áudio em execução e reseta
+    [audioWin, audioLose, audioDraw].forEach(a => {
+        try { a.pause(); a.currentTime = 0; } catch(e){}
+    });
+
+    // Reativa caso tenha quedado bloqueado
+    lockChoices(false);
+}
+// ===========================
+// Acessibilidade por teclado
+// ===========================
+document.addEventListener("keydown", (event) => {
+    if (locked) return;  // respeita bloqueio por áudio
+
+    const tecla = event.key.toLowerCase();
+
+    if (tecla === "1") {
+        play("pedra");
+    } 
+    else if (tecla === "2") {
+        play("papel");
+    } 
+    else if (tecla === "3") {
+        play("tesoura");
+    }
+    else if (tecla === "r") {
+        resetGame();
+    }
+});
+    </code></pre>
+  </section>
+
+  <!-- Botão de retorno -->
+  <a href="index.html" class="voltar-btn">⬅ Voltar ao jogo</a>
+
+  <!-- Créditos -->
+  <div class="creditos">
+    Desenvolvido por <strong>Gabriel Almeida</strong> — 2025
+  </div>
+
+</body>
+</html>
